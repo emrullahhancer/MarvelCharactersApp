@@ -49,6 +49,12 @@ class Utilities {
                     defaults.set(encoded, forKey: "FavoriteCharacters")
                 }
             }
+        } else {
+            var favorites = [CharacterListResultModel]()
+            favorites.append(item)
+            if let encoded = try? encoder.encode(favorites) {
+                defaults.set(encoded, forKey: "FavoriteCharacters")
+            }
         }
         
     }
