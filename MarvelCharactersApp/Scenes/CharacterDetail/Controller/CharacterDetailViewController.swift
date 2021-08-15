@@ -14,20 +14,10 @@ protocol CharacterDetailDelegate: AnyObject {
 class CharacterDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    enum DetailComponentsType {
-        case detail
-        case comics
-    }
-    
-    struct DetailComponents {
-        var type: DetailComponentsType?
-    }
-    
     var item: CharacterListResultModel?
     var comics = ComicsModel()
-    var pageComponents = [DetailComponents]()
     
-    var viewModel: CharacterDetailViewModelProtocol! {
+    var viewModel: CharacterDetailViewModel! {
         didSet {
             viewModel.delegate = self
         }
@@ -35,12 +25,13 @@ class CharacterDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initTableView()
         viewModel = CharacterDetailViewModel()
         viewModel.load(characterID: "\(item?.id ?? 0)")
+        initTableView()
     }
     
     func initTableView() {
+        viewModel.pageComponents.append(DetailComponents(type: .detail))
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -48,10 +39,9 @@ class CharacterDetailViewController: UIViewController {
     }
     
     func initComponents() {
-        pageComponents.removeAll()
-        pageComponents.append(DetailComponents(type: .detail))
+        
         comics.data?.results?.forEach({ _ in
-            pageComponents.append(DetailComponents(type: .comics))
+            self.viewModel.pageComponents.append(DetailComponents(type: .comics))
         })
         tableView.reloadData()
     }
@@ -74,23 +64,12 @@ extension CharacterDetailViewController: CharacterDetailViewModelDelegate {
 }
 extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return pageComponents.count
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
+        return viewModel.pageComponents.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return .leastNormalMagnitude
-        }
-        return 40
+        return .leastNormalMagnitude
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -98,7 +77,7 @@ extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch pageComponents[indexPath.section].type {
+        switch viewModel.pageComponents[indexPath.row].type {
             case .detail:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterDetailCell", for: indexPath) as? CharacterDetailCell {
                     cell.configure(with: item)
@@ -107,7 +86,8 @@ extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSou
                 }
             case .comics:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "ComicsCell", for: indexPath) as? ComicsCell {
-                    cell.configure(with: comics.data?.results?[indexPath.section - 1])
+                    cell.tag = indexPath.row
+                    cell.configure(with: comics.data?.results?[indexPath.row - 1])
                     return cell
                 }
             default:
@@ -117,7 +97,7 @@ extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch pageComponents[indexPath.section].type {
+        switch viewModel.pageComponents[indexPath.row].type {
             case .detail:
                 return UITableView.automaticDimension
             default:
@@ -131,10 +111,9 @@ extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSou
 extension CharacterDetailViewController: CharacterDetailDelegate {
     func favorite(item: CharacterListResultModel) {
         
-        Utilities.isFav(item: item, remove: true) { isFav in
-            if !isFav {
-                Utilities.appendFav(item: item)
-            }
+        let isFav = Utilities.isFav(item: item, remove: true)
+        if !isFav {
+            Utilities.appendFav(item: item)
         }
         
         self.tableView.reloadData()

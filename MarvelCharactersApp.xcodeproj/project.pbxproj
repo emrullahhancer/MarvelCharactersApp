@@ -25,6 +25,7 @@
 		1A42824826C596BD00055113 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A42824726C596BD00055113 /* APIService.swift */; };
 		1A74BEE426C6FA01005DD61A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A74BEE326C6FA01005DD61A /* FavoritesViewController.swift */; };
 		1A8EDAF526C6462600DB05E9 /* ServiceConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8EDAF426C6462600DB05E9 /* ServiceConnector.swift */; };
+		1A984E8C26C9AA77004DC6CF /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A984E8B26C9AA77004DC6CF /* FavoritesViewModel.swift */; };
 		1AEE587B26C628D0004B26BD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE587A26C628D0004B26BD /* Extensions.swift */; };
 		1AEE587D26C62DE5004B26BD /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE587C26C62DE5004B26BD /* Enums.swift */; };
 		1AEE587F26C62E66004B26BD /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE587E26C62E66004B26BD /* Loader.swift */; };
@@ -36,7 +37,6 @@
 		1AEE589926C639DF004B26BD /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE589826C639DF004B26BD /* HomeRouter.swift */; };
 		1AEE589C26C63CD7004B26BD /* CharacterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE589A26C63CD7004B26BD /* CharacterListCell.swift */; };
 		1AEE589D26C63CD7004B26BD /* CharacterListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1AEE589B26C63CD7004B26BD /* CharacterListCell.xib */; };
-		1AEE589F26C63D32004B26BD /* BaseCC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE589E26C63D32004B26BD /* BaseCC.swift */; };
 		A14FBBE9B694EAC5A5A047EC /* Pods_MarvelCharactersApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B78D1A158F8794FDF9A7A2 /* Pods_MarvelCharactersApp.framework */; };
 		C0803B1A344FD1069A3A4EB6 /* Pods_MarvelCharactersApp_MarvelCharactersAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FF6545F95649F815A6EFA0 /* Pods_MarvelCharactersApp_MarvelCharactersAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -83,6 +83,7 @@
 		1A42824726C596BD00055113 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		1A74BEE326C6FA01005DD61A /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		1A8EDAF426C6462600DB05E9 /* ServiceConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConnector.swift; sourceTree = "<group>"; };
+		1A984E8B26C9AA77004DC6CF /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		1AEE587A26C628D0004B26BD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1AEE587C26C62DE5004B26BD /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		1AEE587E26C62E66004B26BD /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
@@ -94,7 +95,6 @@
 		1AEE589826C639DF004B26BD /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		1AEE589A26C63CD7004B26BD /* CharacterListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListCell.swift; sourceTree = "<group>"; };
 		1AEE589B26C63CD7004B26BD /* CharacterListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterListCell.xib; sourceTree = "<group>"; };
-		1AEE589E26C63D32004B26BD /* BaseCC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCC.swift; sourceTree = "<group>"; };
 		5EE4FA08540D54F8F2E9A87E /* Pods-MarvelCharactersApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelCharactersApp.debug.xcconfig"; path = "Target Support Files/Pods-MarvelCharactersApp/Pods-MarvelCharactersApp.debug.xcconfig"; sourceTree = "<group>"; };
 		87F04E4CEB3D18D0B44DF9BF /* Pods-MarvelCharactersAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelCharactersAppTests.debug.xcconfig"; path = "Target Support Files/Pods-MarvelCharactersAppTests/Pods-MarvelCharactersAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8AB2BE14C101EEFD55478763 /* Pods_MarvelCharactersAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarvelCharactersAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -264,7 +264,6 @@
 				1AEE587A26C628D0004B26BD /* Extensions.swift */,
 				1AEE587C26C62DE5004B26BD /* Enums.swift */,
 				1AEE587E26C62E66004B26BD /* Loader.swift */,
-				1AEE589E26C63D32004B26BD /* BaseCC.swift */,
 				1A3609E926C67C1C00B67C30 /* Utilities.swift */,
 			);
 			path = Helpers;
@@ -347,6 +346,7 @@
 		1AEE588E26C635AA004B26BD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1A984E8B26C9AA77004DC6CF /* FavoritesViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -658,7 +658,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A3609E026C66B1100B67C30 /* CharacterDetailCell.swift in Sources */,
-				1AEE589F26C63D32004B26BD /* BaseCC.swift in Sources */,
 				1AEE589C26C63CD7004B26BD /* CharacterListCell.swift in Sources */,
 				1AEE589426C63633004B26BD /* ApplicationTabbarController.swift in Sources */,
 				1AEE589626C63815004B26BD /* HomeViewModel.swift in Sources */,
@@ -672,6 +671,7 @@
 				1A3609DE26C6645C00B67C30 /* ComicsModel.swift in Sources */,
 				1A3609EA26C67C1C00B67C30 /* Utilities.swift in Sources */,
 				1A3609D426C6500300B67C30 /* CharacterDetailViewController.swift in Sources */,
+				1A984E8C26C9AA77004DC6CF /* FavoritesViewModel.swift in Sources */,
 				1A3609DC26C662EC00B67C30 /* CharacterDetailViewModel.swift in Sources */,
 				1A3609E526C66ED500B67C30 /* ComicsCell.swift in Sources */,
 				1A42821026C5911500055113 /* AppDelegate.swift in Sources */,

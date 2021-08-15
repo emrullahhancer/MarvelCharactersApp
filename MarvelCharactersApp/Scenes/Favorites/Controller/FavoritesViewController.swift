@@ -11,10 +11,7 @@ class FavoritesViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let defaults = UserDefaults.standard
-    let decoder = JSONDecoder()
-    
-    var favorites = [CharacterListResultModel]()
+    lazy var viewModel = FavoritesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +20,8 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if let data = defaults.object(forKey: "FavoriteCharacters") as? Data {
-            if var favorites = try? decoder.decode([CharacterListResultModel].self, from: data) {
-                self.favorites = favorites
-                collectionView.reloadData()
-            }
-        }
+        viewModel.getFavorites()
+        collectionView.reloadData()
     }
     
     func initCollectionView() {
@@ -51,12 +43,12 @@ class FavoritesViewController: UIViewController {
 
 extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favorites.count
+        return viewModel.favorites.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterListCell", for: indexPath) as? CharacterListCell {
-            cell.configure(with: favorites[indexPath.row])
+            cell.configure(with: viewModel.favorites[indexPath.row])
             return cell
         }
         
@@ -64,7 +56,7 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = HomeRouter.detail(item: favorites[indexPath.row])
+        let vc = HomeRouter.detail(item: viewModel.favorites[indexPath.row])
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -7,12 +7,6 @@
 
 import Foundation
 
-protocol HomeViewModelProtocol {
-    var delegate: HomeViewModelDelegate? { get set }
-    func load()
-    func selectCharacter(at index: Int)
-}
-
 enum HomeViewModelOutput {
     case setLoading(Bool)
     case showList([CharacterListResultModel])
@@ -29,7 +23,7 @@ protocol HomeViewModelDelegate: AnyObject {
 
 
 
-class HomeViewModel: HomeViewModelProtocol {
+class HomeViewModel {
     
     var delegate: HomeViewModelDelegate?
     var offset = 0

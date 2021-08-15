@@ -26,7 +26,7 @@ class Loader {
             }
         }
         
-        bgView.frame = view.frame
+        bgView.frame = view.bounds
         bgView.tag = viewTag
         bgView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         loadingIndicator.frame = CGRect(x: (view.frame.width / 2) - 25, y: (view.frame.height / 2) - 25, width: 50, height: 50)

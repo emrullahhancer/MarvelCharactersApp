@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     private var characterList: [CharacterListResultModel] = []
     
-    var viewModel: HomeViewModelProtocol! {
+    var viewModel: HomeViewModel! {
         didSet {
             viewModel.delegate = self
         }
